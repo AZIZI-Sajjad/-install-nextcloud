@@ -7,9 +7,10 @@
 set -euo pipefail
 
 # ───── Variables à adapter ─────────────────────────────────────────────
-SERVER_NAME="nextcloudarchive.domaine.com"   # FQDN du vhost
-BASE_DOMAIN="domaine.com"                    # domaine du certif wildcard
-ADMIN_EMAIL="admin@domaine.com"
+DOMAIN="domaine.com"
+SERVER_NAME="nextcloudarchive.${DOMAIN}"   # FQDN du vhost
+BASE_DOMAIN="${DOMAIN}"                    # domaine du certif wildcard
+ADMIN_EMAIL="admin@${DOMAIN}"
 
 WEB_ROOT="/var/www/html"
 NC_DIR="${WEB_ROOT}/nextcloud"
@@ -22,7 +23,7 @@ DB_USER="nextclouduser"
 DB_PASS="$(genpass)"
 DB_ROOT_PASS="$(genpass)"
 
-# Certificat wildcard *.domaine.com
+# Certificat wildcard *.${DOMAIN}
 SSL_DIR="/etc/ssl/_.${BASE_DOMAIN}"
 SSL_CRT="${SSL_DIR}/_.${BASE_DOMAIN}.crt"
 SSL_KEY="${SSL_DIR}/_.${BASE_DOMAIN}.key"
